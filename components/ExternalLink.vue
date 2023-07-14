@@ -17,7 +17,7 @@
         </div>
       </dt>
     </nuxt-link>
-  </li>
+  <li class="my-4">
 </template>
 <script setup>
 const props = defineProps({
