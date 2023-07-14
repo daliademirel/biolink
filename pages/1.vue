@@ -29,4 +29,11 @@ onMounted(async () => {
   }
 });
 </script>
-<style scoped></style>
+<style scoped>
+main {
+  background-image: url('https://i.ibb.co/DR2Cqdc/IMG-8240.jpg');
+  background-blend-mode: lighten;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+</style>
+
