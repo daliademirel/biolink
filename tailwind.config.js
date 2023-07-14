@@ -32,12 +32,15 @@ module.exports = {
     },
     extend: {
       animation: {
-        pulse: 'pulse 2s infinite',
+        heartBeat: 'heartBeat 1s infinite',
       },
       keyframes: {
-        pulse: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.5' },
+        heartBeat: {
+          '0%': { transform: 'scale(1)' },
+          '14%': { transform: 'scale(1.3)' },
+          '28%': { transform: 'scale(1)' },
+          '42%': { transform: 'scale(1.3)' },
+          '70%': { transform: 'scale(1)' },
         },
       },
     },
