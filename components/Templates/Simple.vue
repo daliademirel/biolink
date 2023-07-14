@@ -10,7 +10,7 @@
       <h1 v-if="acc.n" class="text-4xl font-bold mt-4 text-slate-800">
         {{ acc.n }}
       </h1>
-      <p v-if="acc.d" class="text-sm mt-2 text-slate-600">
+      <p v-if="acc.d" class="text-xl mt-2 text-slate-600">
         {{ acc.d }}
       </p>
     </div>
