@@ -44,7 +44,7 @@ module.exports = {
         },
       },
       animation: {
-        wobble: 'wobble 0.5s infinite',
+        wobble: 'wobble 0.9s infinite',
       },
     },
   },
