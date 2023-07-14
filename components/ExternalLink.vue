@@ -7,8 +7,8 @@
         <div
           class="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg text-slate-500"
         >
-          <icon v-if="icon" :name="icon" class="h-5 w-5" />
-          <icon v-else name="ph:link-simple" class="h-5 w-5" />
+          <icon v-if="icon" :name="icon" class="h-7 w-7" />
+          <icon v-else name="ph:link-simple" class="h-7 w-7" />
         </div>
         <div class="w-full flex-grow min-w-0">
           <p class="font-medium text-xl leading-6 text-gray-900">
