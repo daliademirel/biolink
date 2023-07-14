@@ -1,5 +1,5 @@
 <template>
-  <li class="my-4"> <!-- Hier habe ich eine Margin Top und Bottom von 4 hinzugefügt -->
+  <li
     <nuxt-link :to="url" target="_blank" v-if="label && url">
       <dt
         class="flex items-center space-x-2 p-1 -m-1 rounded-xl hover:bg-slate-100 bg-slate-50"
@@ -17,7 +17,7 @@
         </div>
       </dt>
     </nuxt-link>
-  <li class="my-4">
+  <li
 </template>
 <script setup>
 const props = defineProps({
