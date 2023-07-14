@@ -10,7 +10,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, onBeforeUnmount, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { decodeData } from "../utils/transformer";
 import axios from 'axios';
 const route = useRoute();
@@ -27,12 +27,15 @@ onMounted(async () => {
   if (decodedData.value.d.includes('*CITY*')) {
     decodedData.value.d = decodedData.value.d.replace('*CITY*', `${location} ${flagEmoji}`);
   }
-  // Fügen Sie die Klasse zum body-Tag hinzu
-  document.body.classList.add('custom-background');
-});
-
-onBeforeUnmount(() => {
-  // Entfernen Sie die Klasse vom body-Tag
-  document.body.classList.remove('custom-background');
 });
 </script>
+<style scoped>
+body {
+  background-image: url('https://i.ibb.co/DR2Cqdc/IMG-8240.jpg');
+  background-blend-mode: lighten;
+  background-color: rgba(255, 255, 255, 0.6);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+</style>
