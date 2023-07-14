@@ -104,5 +104,5 @@ const allSocialLinksAreEmpty = computed(() => {
   );
 });
 </script>
-<style scoped>
+<style scoped></style>
 
