@@ -10,10 +10,21 @@
   </div>
 </template>
 <script setup>
+import { onMounted, ref } from 'vue';
 import { decodeData } from "../utils/transformer";
+import axios from 'axios';
 const route = useRoute();
 const acc = route.query.data;
 const decodedData = ref({});
-decodedData.value = decodeData(acc);
+
+onMounted(async () => {
+  // Erhalten Sie die IP-Adresse und den Standort des Benutzers
+  const response = await axios.get('https://api.ipapi.com/check?access_key=c886500afafa455c348bfdbae47b9522');
+  const location = response.data.city;
+  const flagEmoji = response.data.location.country_flag_emoji;
+  decodedData.value = decodeData(acc);
+  // Setzen Sie den Ort und das Flaggen-Emoji in der Beschreibung
+  decodedData.value.d = `I’m John Snow, from ${location} ${flagEmoji}. I know Nothing.`;
+});
 </script>
 <style scoped></style>
