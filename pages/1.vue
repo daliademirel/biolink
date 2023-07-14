@@ -23,8 +23,10 @@ onMounted(async () => {
   const location = response.data.city;
   const flagEmoji = response.data.location.country_flag_emoji;
   decodedData.value = decodeData(acc);
-  // Setzen Sie den Ort und das Flaggen-Emoji in der Beschreibung
-  decodedData.value.d = `I’m John Snow, from ${location} ${flagEmoji}. I know Nothing.`;
+  // Ersetzen Sie "*CITY*" durch den Standort und das Emoji
+  if (decodedData.value.d.includes('*CITY*')) {
+    decodedData.value.d = decodedData.value.d.replace('*CITY*', `${location} ${flagEmoji}`);
+  }
 });
 </script>
 <style scoped></style>
