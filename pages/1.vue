@@ -29,4 +29,13 @@ onMounted(async () => {
   }
 });
 </script>
-<style scoped></style>
+<style scoped>
+body {
+  background-image: url('https://i.ibb.co/DR2Cqdc/IMG-8240.jpg');
+  background-blend-mode: lighten;
+  background-color: rgba(255, 255, 255, 0.6);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+</style>
