@@ -79,8 +79,16 @@
         :class="{ 'animate-heartBeat': id === 0 }"
       />
     </ul>
+
+    <div v-if="acc.v" class="video-container">
+      <div style="width:100%;height:0px;position:relative;padding-bottom:177.778%;">
+        <iframe :src="acc.v" frameborder="0" width="100%" height="100%" allowfullscreen allow="autoplay" style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe>
+      </div>
+    </div>
+
   </main>
 </template>
+
 <script setup>
 const props = defineProps({
   acc: {
@@ -104,4 +112,10 @@ const allSocialLinksAreEmpty = computed(() => {
   );
 });
 </script>
-<style scoped></style>
+
+<style scoped>
+.video-container {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+</style>
