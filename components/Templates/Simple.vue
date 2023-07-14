@@ -23,7 +23,51 @@
           <icon name="ph:facebook-logo-duotone" class="h-6 w-6" />
         </a>
       </span>
-      <!-- more social links... -->
+      <span v-if="acc.t" class="p-1">
+        <a :href="acc.t" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:twitter-logo-duotone" class="h-6 w-6" />
+        </a>
+      </span>
+      <span v-if="acc.ig" class="p-1">
+        <a :href="acc.ig" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:instagram-logo-duotone" class="h-6 w-6" />
+        </a>
+      </span>
+      <span v-if="acc.m" class="p-1">
+        <a :href="acc.m" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:envelope-duotone" class="h-6 w-6" />
+        </a>
+      </span>
+      <span v-if="acc.tg" class="p-1">
+        <a :href="acc.tg" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:telegram-logo-duotone" class="h-6 w-6" />
+        </a>
+      </span>
+      <span v-if="acc.w" class="p-1">
+        <a :href="`https://wa.me/${acc.w}`" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:whatsapp-logo-duotone" class="h-6 w-6" />
+        </a>
+      </span>
+      <span v-if="acc.y" class="p-1">
+        <a :href="acc.y" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:youtube-logo-duotone" class="h-6 w-6" />
+        </a>
+      </span>
+      <span v-if="acc.e" class="p-1">
+        <a :href="`mailto:${acc.e}`" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:envelope-duotone" class="h-6 w-6" />
+        </a>
+      </span>
+      <span v-if="acc.gh" class="p-1">
+        <a :href="acc.gh" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:github-logo-duotone" class="h-6 w-6" />
+        </a>
+      </span>
+      <span v-if="acc.l" class="p-1">
+        <a :href="acc.l" target="_blank" rel="noopener | noreferrer">
+          <icon name="ph:linkedin-logo-duotone" class="h-6 w-6" />
+        </a>
+      </span>
     </div>
     <ul class="space-y-4">
       <ExternalLink
@@ -35,16 +79,9 @@
         :class="{ 'animate-heartBeat': id === 0 }"
       />
     </ul>
-
-    <div style="width:100%;height:0px;position:relative;padding-bottom:177.778%;">
-      <iframe src="https://streamable.com/e/3sacci?autoplay=1" frameborder="0" width="100%" height="100%" allowfullscreen allow="autoplay" style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe>
-    </div>
   </main>
 </template>
-
 <script setup>
-import { computed, defineProps } from 'vue';
-
 const props = defineProps({
   acc: {
     type: Object,
@@ -67,10 +104,4 @@ const allSocialLinksAreEmpty = computed(() => {
   );
 });
 </script>
-
-<style scoped>
-.video-container {
-  max-width: 100%;
-  margin-bottom: 20px;
-}
-</style>
+<style scoped></style>
