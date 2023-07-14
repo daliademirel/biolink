@@ -69,7 +69,7 @@
         </a>
       </span>
     </div>
-    <ul class="space-y-6">
+    <ul class="space-y-4">
       <ExternalLink
         v-for="(link, id) in acc.ls"
         :label="link.l"
