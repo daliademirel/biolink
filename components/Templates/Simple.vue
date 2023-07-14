@@ -3,7 +3,7 @@
     <div class="text-center">
       <div
         v-if="acc.i"
-        class="h-25 w-25 rounded-full overflow-hidden ring ring-slate-200 mx-auto"
+        class="h-40 w-40 rounded-full overflow-hidden ring ring-slate-200 mx-auto"
       >
         <img :src="acc.i" alt="name" class="h-full w-full object-cover" />
       </div>
