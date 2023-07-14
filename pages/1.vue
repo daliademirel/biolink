@@ -20,7 +20,7 @@ const decodedData = ref({});
 onMounted(async () => {
   // Erhalten Sie die IP-Adresse und den Standort des Benutzers
   const response = await axios.get('https://api.ipapi.com/check?access_key=c886500afafa455c348bfdbae47b9522');
-  const location = response.data.city;
+  const location = response.data.city || response.data.region_name || response.data.location.capital;
   const flagEmoji = response.data.location.country_flag_emoji;
   decodedData.value = decodeData(acc);
   // Ersetzen Sie "*CITY*" durch den Standort und das Emoji
