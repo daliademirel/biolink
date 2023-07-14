@@ -30,6 +30,28 @@ module.exports = {
         "monospace",
       ],
     },
+    extend: {
+      keyframes: {
+        wobble: {
+          '0%': { transform: 'translateX(0)' },
+          '15%': { transform: 'translateX(-10px)' },
+          '30%': { transform: 'translateX(10px)' },
+          '45%': { transform: 'translateX(-10px)' },
+          '60%': { transform: 'translateX(10px)' },
+          '75%': { transform: 'translateX(-10px)' },
+          '90%': { transform: 'translateX(10px)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        wobble: 'wobble 0.5s infinite',
+      },
+    },
+  },
+  variants: {
+    extend: {
+      animation: ['hover'],
+    },
   },
   plugins: [require("@tailwindcss/forms")],
   content: [
