@@ -60,8 +60,6 @@
 
 <script setup>
 import { encodeData } from "../utils/transformer";
-import axios from 'axios'; // Sie müssen axios installieren, um HTTP-Anfragen zu machen
-
 const data = ref({
   n: "",
   d: "",
@@ -78,15 +76,10 @@ const data = ref({
   ls: [],
 });
 
-const prefillDemoData = async () => {
-  // Erhalten Sie die IP-Adresse und den Standort des Benutzers
-  const response = await axios.get('https://api.ipapi.com/check?access_key=c886500afafa455c348bfdbae47b9522');
-  const location = response.data.city;
-  const flagEmoji = response.data.location.country_flag_emoji;
-
+const prefillDemoData = () => {
   data.value = {
     n: "John Snow",
-    d: `I’m John Snow, from ${location} ${flagEmoji}. I know Nothing.`,
+    d: "I’m John Snow, the king in the north. I know Nothing.",
     i: "https://i.insider.com/56743fad72f2c12a008b6cc0",
     f: "https://www.facebook.com/john_snow",
     t: "https://twitter.com/john_snow",
