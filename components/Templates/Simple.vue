@@ -76,6 +76,7 @@
         :icon="link.i"
         :url="link.u"
         :key="id"
+        class="animate-wobble"
       />
     </ul>
   </main>
