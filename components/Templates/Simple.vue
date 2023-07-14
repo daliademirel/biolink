@@ -76,7 +76,7 @@
         :icon="link.i"
         :url="link.u"
         :key="id"
-        :class="{ 'nimate-pulse': id === 0 }"
+        :class="{ 'animate-heartBeat': id === 0 }"
       />
     </ul>
   </main>
