@@ -1,7 +1,9 @@
-import { encode, decode } from "js-base64";
+import { Base64 } from "js-base64";
 
-export const encodeData = (obj) => {
-  return encode(JSON.stringify(obj));
+export const encodeData = (data) => {
+  return Base64.encodeURI(JSON.stringify(data));
 };
 
-export const decodeData = (base64) => JSON.parse(decode(base64));
+export const decodeData = (encodedData) => {
+  return JSON.parse(Base64.decode(encodedData));
+};
