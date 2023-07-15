@@ -89,9 +89,9 @@ function closePopup() {
 </script>
 
 <style scoped>
-/* Ihr CSS-Code hier */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
+/* Ihr CSS-Code hier */
 * {
   margin: 0;
   padding: 0;
