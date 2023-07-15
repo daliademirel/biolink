@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Popup />
     <templates-simple v-if="decodedData" :acc="decodedData" />
     <div
       v-else
@@ -9,10 +10,12 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { onMounted, ref } from 'vue';
 import { decodeData } from "../utils/transformer";
 import axios from 'axios';
+import Popup from './Popup.vue'; // Importieren Sie die Popup-Komponente
 const route = useRoute();
 const acc = route.query.data;
 const decodedData = ref({});
@@ -29,6 +32,7 @@ onMounted(async () => {
   }
 });
 </script>
+
 <style scoped>
 body {
   background-image: url('https://i.ibb.co/DR2Cqdc/IMG-8240.jpg');
