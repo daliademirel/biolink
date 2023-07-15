@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="copy-button">
-          <input id="copyvalue" type="text" readonly value="Text me &quot;LIMITED&quot; for a free surprise 😛">
+          <input id="copyvalue" ref="textInput" type="text" readonly :value="displayText">
           <button onclick="window.location.href='https://onlyfans.com/dalia-demirel';" class="copybtn btn-effect">SEND</button>
         </div>
       </div>
@@ -46,6 +46,7 @@ const showPopup = ref(false);
 const countdownId = 'countdown';
 const countdownText = ref('Only 02:00 minutes left');
 let timer;
+const displayText = ref('');
 
 onMounted(async () => {
   // Erhalten Sie die IP-Adresse und den Standort des Benutzers
@@ -61,7 +62,8 @@ onMounted(async () => {
   setTimeout(() => {
     showPopup.value = true;
     startCountdown(120, countdownId);
-  }, 1000);
+    typeText("Text me \"LIMITED\" for a free surprise 😛", 50);
+  }, 5000);
 });
 
 function startCountdown(duration, elementId) {
@@ -80,6 +82,17 @@ function startCountdown(duration, elementId) {
       clearInterval(timer);
     }
   }, 1000);
+}
+
+function typeText(text, speed) {
+  let i = 0;
+  const interval = setInterval(() => {
+    displayText.value += text.charAt(i);
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+    }
+  }, speed);
 }
 
 function closePopup() {
