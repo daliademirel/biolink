@@ -24,19 +24,7 @@
     </div>
   </div>
 </template>
-
 <script>
-export default {
-  data() {
-    return {
-      show: false,
-    };
-  },
-  mounted() {
-    setTimeout(() => {
-      this.show = true;
-    }, 3000); // 3 Sekunden
-
     // Funktion für den Countdown
     function startCountdown(duration, display) {
       var timer = duration, minutes, seconds;
@@ -58,12 +46,13 @@ export default {
     }
 
     // Starte den Countdown beim Laden der Seite
-    var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
-        display = document.querySelector('#countdown');
-    startCountdown(twoMinutes, display);
-  },
-};
-</script>
+    window.onload = function () {
+      var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
+          display = document.querySelector('#countdown');
+      startCountdown(twoMinutes, display);
+      document.querySelector('.coupon-popup').style.display = 'block';
+    };
+  </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
@@ -74,23 +63,27 @@ export default {
   font-family: "Poppins", sans-serif;
 }
 
-.container {
+.coupon-popup {
   width: 100%;
   height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  background-color: #dc143c;
+  z-index: 9999;
 }
 
 .card {
+  position: relative;
   width: 400px;
   height: 180px;
   border-radius: 5px;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
   background-color: #fff;
   padding: 10px 10px;
-  position: relative;
 }
 
 .main,
@@ -100,35 +93,13 @@ export default {
   padding: 0 10px;
   align-items: center;
 }
-.card::after {
-  position: absolute;
-  content: "";
-  height: 40px;
-  right: -20px;
-  border-radius: 40px;
-  z-index: 1;
-  top: 70px;
-  background-color: #dc143c;
-  width: 40px;
-}
-
-.card::before {
-  position: absolute;
-  content: "";
-  height: 40px;
-  left: -20px;
-  border-radius: 40px;
-  z-index: 1;
-  top: 70px;
-  background-color: #dc143c;
-  width: 40px;
-}
 
 .co-img img {
   width: 70px;
   height: 70px;
   margin-left: 35px;
 }
+
 .vertical {
   border-left: 5px dotted black;
   height: 100px;
@@ -145,6 +116,7 @@ export default {
 .content h1 span {
   font-size: 18px;
 }
+
 .content h2 {
   font-size: 18px;
   margin-left: -20px;
@@ -185,13 +157,5 @@ export default {
 .copy-button button:active {
   transform: scale(0.95);
   background-color: #0088cc;
-}
-
-.buy {
-  position: absolute;
-  content: "";
-  bottom: 20px;
-  left: 20px;
-  background-color: #dc143c;
 }
 </style>
