@@ -7,7 +7,7 @@
             <img
               src="https://i.ibb.co/0yY1zxt/Only-Fans-Social-Icon-Rounded-Blue.png"
               alt=""
-            ></img>
+            />
           </div>
           <div class="vertical"></div>
           <div class="content">
@@ -54,7 +54,6 @@
       document.querySelector('.coupon-popup').style.display = 'block';
     };
 </script>
-
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
