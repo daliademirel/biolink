@@ -62,7 +62,7 @@ onMounted(async () => {
   setTimeout(() => {
     showPopup.value = true;
     startCountdown(120, countdownId);
-    typeText("Text me \"LIMITED\" for a free surprise 😛", 80);
+    typeText("Hey Dalia 👋🏻 Whats up? 😏", 80);
   }, 1000);
 });
 
