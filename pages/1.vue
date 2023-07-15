@@ -34,79 +34,95 @@
     </div>
   </div>
 </template>
-<script setup>
-import { onMounted, ref } from 'vue';
+<script>
+import { ref } from 'vue';
 import { decodeData } from "../utils/transformer";
 import axios from 'axios';
-const route = useRoute();
-const acc = route.query.data;
-const decodedData = ref({});
-const showPopup = ref(false);
-const closedPopup = ref(false); // Neue Variable
-const countdownId = 'countdown';
-const countdownText = ref('Only 02:00 minutes left');
-let timer;
-const displayText = ref('');
 
-onMounted(async () => {
-  const response = await axios.get('https://api.ipapi.com/check?access_key=c886500afafa455c348bfdbae47b9522');
-  const location = response.data.city || response.data.region_name || response.data.location.capital;
-  const flagEmoji = response.data.location.country_flag_emoji;
-  decodedData.value = decodeData(acc);
-  if (decodedData.value.d.includes('*CITY*')) {
-    decodedData.value.d = decodedData.value.d.replace('*CITY*', `${location} ${flagEmoji}`);
+export default {
+  setup() {
+    const route = useRoute();
+    const acc = route.query.data;
+    const decodedData = ref({});
+    const showPopup = ref(false);
+    const closedPopup = ref(false);
+    const countdownId = 'countdown';
+    const countdownText = ref('Only 02:00 minutes left');
+    let timer;
+    const displayText = ref('');
+
+    onMounted(async () => {
+      const response = await axios.get('https://api.ipapi.com/check?access_key=c886500afafa455c348bfdbae47b9522');
+      const location = response.data.city || response.data.region_name || response.data.location.capital;
+      const flagEmoji = response.data.location.country_flag_emoji;
+      decodedData.value = decodeData(acc);
+      if (decodedData.value.d.includes('*CITY*')) {
+        decodedData.value.d = decodedData.value.d.replace('*CITY*', `${location} ${flagEmoji}`);
+      }
+
+      setTimeout(() => {
+        showPopup.value = true;
+        startCountdown(120, countdownId);
+        typeText("Hey Dalia 👋🏻 Whats up? 😏", 80);
+      }, 1000);
+    });
+
+    return {
+      decodedData,
+      showPopup,
+      countdownId,
+      countdownText,
+      displayText,
+      closedPopup
+    };
+  },
+  methods: {
+    startCountdown(duration, elementId) {
+      let timer = duration, minutes, seconds;
+      setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        this.countdownText = "Only " + minutes + ":" + seconds + " minutes left";
+
+        if (--timer < 0) {
+          this.countdownText = "Expired";
+          clearInterval(timer);
+        }
+      }, 1000);
+    },
+    typeText(text, speed) {
+      let i = 0;
+      const interval = setInterval(() => {
+        this.displayText += text.charAt(i);
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+        }
+      }, speed);
+    },
+    closePopup() {
+      this.showPopup = false;
+      this.closedPopup = true;
+      clearInterval(this.timer);
+    },
+    redirectToOnlyFans() {
+      window.location.href = 'https://onlyfans.com/dalia-demirel';
+    },
+    checkScroll() {
+      window.addEventListener('scroll', () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && this.closedPopup) {
+          this.showPopup = true;
+        }
+      });
+    }
+  },
+  mounted() {
+    this.checkScroll();
   }
-
-  setTimeout(() => {
-    showPopup.value = true;
-    startCountdown(120, countdownId);
-    typeText("Hey Dalia 👋🏻 Whats up? 😏", 80);
-  }, 1000);
-
-  window.addEventListener('scroll', () => {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && closedPopup.value) {
-      showPopup.value = true;
-    }
-  });
-});
-
-function startCountdown(duration, elementId) {
-  let timer = duration, minutes, seconds;
-  setInterval(function () {
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    countdownText.value = "Only " + minutes + ":" + seconds + " minutes left";
-
-    if (--timer < 0) {
-      countdownText.value = "Expired";
-      clearInterval(timer);
-    }
-  }, 1000);
-}
-
-function typeText(text, speed) {
-  let i = 0;
-  const interval = setInterval(() => {
-    displayText.value += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-    }
-  }, speed);
-}
-
-function closePopup() {
-  showPopup.value = false;
-  closedPopup.value = true; // Setzen Sie closedPopup auf true, wenn das Popup geschlossen wird
-  clearInterval(timer);
-}
-
-function redirectToOnlyFans() {
-  window.location.href = 'https://onlyfans.com/dalia-demirel';
 }
 </script>
 <style scoped>
