@@ -9,7 +9,7 @@
     </div>
 
     <!-- Popup-Code hier einfügen -->
-    <div class="coupon-popup" :class="{ 'show': showPopup, 'slide-out': hidePopup }" @click.self="closePopup">
+    <div v-if="showPopup" class="coupon-popup" @click.self="closePopup">
       <div class="card" :class="{ 'slide-in': showPopup, 'slide-out': hidePopup }">
         <button class="close-button" @click="hidePopup = true">Close</button>
         <div class="main">
@@ -103,6 +103,9 @@ function closePopup() {
     hidePopup.value = true;
   }
   clearInterval(timer);
+  setTimeout(() => {
+    showPopup.value = false;
+  }, 500);
 }
 
 function redirectToOnlyFans() {
