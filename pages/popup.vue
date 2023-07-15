@@ -24,35 +24,38 @@
     </div>
   </div>
 </template>
-
 <script>
-    // Funktion für den Countdown
-    function startCountdown(duration, display) {
-      var timer = duration, minutes, seconds;
-      setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+export default {
+  mounted() {
+    if (typeof window !== 'undefined') {
+      // Funktion für den Countdown
+      function startCountdown(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = "Only " + minutes + ":" + seconds + " minutes left";
+          display.textContent = "Only " + minutes + ":" + seconds + " minutes left";
 
-        if (--timer < 0) {
-          // Countdown abgelaufen
-          display.textContent = "Expired";
-          // Weitere Aktionen hier ausführen
-        }
-      }, 1000);
-    }
+          if (--timer < 0) {
+            // Countdown abgelaufen
+            display.textContent = "Expired";
+            // Weitere Aktionen hier ausführen
+          }
+        }, 1000);
+      }
 
-    // Starte den Countdown beim Laden der Seite
-    window.onload = function () {
+      // Starte den Countdown beim Laden der Seite
       var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
           display = document.querySelector('#countdown');
       startCountdown(twoMinutes, display);
       document.querySelector('.coupon-popup').style.display = 'block';
-    };
+    }
+  }
+}
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
