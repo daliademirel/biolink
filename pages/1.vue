@@ -9,7 +9,7 @@
     </div>
 
     <!-- Popup-Code hier einfügen -->
-    <div class="coupon-popup" style="display: none;">
+    <div class="coupon-popup" :class="{ 'show': showPopup }">
       <div class="card">
         <button class="close-button" @click="closePopup">Close</button>
         <div class="main">
@@ -87,6 +87,12 @@ function closePopup() {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.coupon-popup.show {
+  opacity: 1;
 }
 
 .card {
