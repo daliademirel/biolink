@@ -1,6 +1,6 @@
 <template>
   <div>
-    <templates-simple v-if="decodedData && !showPopup" :acc="decodedData" />
+    <templates-simple v-if="decodedData" :acc="decodedData" />
     <div
       v-else
       class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -9,8 +9,8 @@
     </div>
 
     <!-- Popup-Code hier einfügen -->
-    <div v-if="showPopup" class="coupon-popup show" @click.self="closePopup">
-      <div class="card slide-in">
+    <div class="coupon-popup" :class="{ 'show': showPopup }" @click.self="closePopup">
+      <div class="card" :class="{ 'slide-in': showPopup }">
         <button class="close-button" @click="closePopup">Close</button>
         <div class="main">
           <div class="co-img">
@@ -31,11 +31,6 @@
           <button @click="redirectToOnlyFans" class="copybtn btn-effect">SEND</button>
         </div>
       </div>
-    </div>
-
-    <div v-else>
-      <templates-simple :acc="decodedData" />
-      <div class="profile-button" @click="openPopup">Get 50% Off</div>
     </div>
   </div>
 </template>
@@ -63,6 +58,12 @@ onMounted(async () => {
   if (decodedData.value.d.includes('*CITY*')) {
     decodedData.value.d = decodedData.value.d.replace('*CITY*', `${location} ${flagEmoji}`);
   }
+
+  setTimeout(() => {
+    showPopup.value = true;
+    startCountdown(120, countdownId);
+    typeText("Text me \"LIMITED\" for a free surprise 😛", 50);
+  }, 5000);
 });
 
 function startCountdown(duration, elementId) {
@@ -83,21 +84,6 @@ function startCountdown(duration, elementId) {
   }, 1000);
 }
 
-function closePopup() {
-  showPopup.value = false;
-  clearInterval(timer);
-}
-
-function redirectToOnlyFans() {
-  window.location.href = 'https://onlyfans.com/dalia-demirel';
-}
-
-function openPopup() {
-  showPopup.value = true;
-  startCountdown(120, countdownId);
-  typeText("Text me \"LIMITED\" for a free surprise 😛", 50);
-}
-
 function typeText(text, speed) {
   let i = 0;
   const interval = setInterval(() => {
@@ -107,6 +93,15 @@ function typeText(text, speed) {
       clearInterval(interval);
     }
   }, speed);
+}
+
+function closePopup() {
+  showPopup.value = false;
+  clearInterval(timer);
+}
+
+function redirectToOnlyFans() {
+  window.location.href = 'https://onlyfans.com/dalia-demirel';
 }
 </script>
 
@@ -250,17 +245,5 @@ function typeText(text, speed) {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.profile-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background-color: #00aeef;
-  color: #fff;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
 }
 </style>
