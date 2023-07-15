@@ -7,7 +7,7 @@
             <img
               src="https://i.ibb.co/0yY1zxt/Only-Fans-Social-Icon-Rounded-Blue.png"
               alt=""
-            />
+            ></img>
           </div>
           <div class="vertical"></div>
           <div class="content">
@@ -47,15 +47,14 @@
     }
 
     // Starte den Countdown beim Laden der Seite
-    if (typeof window !== 'undefined') {
-      window.onload = function () {
-        var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
-            display = document.querySelector('#countdown');
-        startCountdown(twoMinutes, display);
-        document.querySelector('.coupon-popup').style.display = 'block';
-      };
-    }
+    window.onload = function () {
+      var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
+          display = document.querySelector('#countdown');
+      startCountdown(twoMinutes, display);
+      document.querySelector('.coupon-popup').style.display = 'block';
+    };
 </script>
+
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
@@ -161,3 +160,4 @@
   transform: scale(0.95);
   background-color: #0088cc;
 }
+</style>
