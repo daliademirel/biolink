@@ -21,8 +21,8 @@
           </div>
           <div class="vertical"></div>
           <div class="content">
-            <h2>Limited offer</h2>
-            <h1>50% <span>Off</span></h1>
+            <h2 class="offer-title">Limited offer</h2>
+            <h1 class="discount">50% <span>Off</span></h1>
             <p :id="countdownId">{{ countdownText }}</p>
           </div>
         </div>
@@ -61,7 +61,7 @@ onMounted(async () => {
   setTimeout(() => {
     showPopup.value = true;
     startCountdown(120, countdownId);
-  }, 5000);
+  }, 1000);
 });
 
 function startCountdown(duration, elementId) {
@@ -149,21 +149,22 @@ function closePopup() {
   left: 40%;
 }
 
-.content h1 {
-  font-size: 35px;
-  margin-left: -20px;
-  color: #565656;
-}
-
-.content h1 span {
-  font-size: 18px;
-}
-
-.content h2 {
+.content h2.offer-title {
   font-size: 18px;
   margin-left: -20px;
   color: #565656;
   text-transform: uppercase;
+}
+
+.content h1.discount {
+  font-size: 35px;
+  margin-left: -20px;
+  color: #565656;
+  font-weight: bold;
+}
+
+.content h1.discount span {
+  font-size: 18px;
 }
 
 .content p {
