@@ -17,13 +17,14 @@
           </div>
         </div>
         <div class="copy-button">
-          <input id="copyvalue" type="text" readonly value="Text me &quot;LIMITED&quot; for a free surprise 😛">
+          <input id="copyvalue" type="text" readonly value="Text me &quot;LIMITED&quot; for a free surprise \ud83d\ude1b">
           <button onclick="window.location.href='https://onlyfans.com/dalia-demirel';" class="copybtn btn-effect">SEND</button>
         </div>         
       </div>
     </div>
   </div>
 </template>
+
 <script>
     // Funktion für den Countdown
     function startCountdown(duration, display) {
@@ -46,13 +47,15 @@
     }
 
     // Starte den Countdown beim Laden der Seite
-    window.onload = function () {
-      var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
-          display = document.querySelector('#countdown');
-      startCountdown(twoMinutes, display);
-      document.querySelector('.coupon-popup').style.display = 'block';
-    };
-  </script>
+    if (typeof window !== 'undefined') {
+      window.onload = function () {
+        var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
+            display = document.querySelector('#countdown');
+        startCountdown(twoMinutes, display);
+        document.querySelector('.coupon-popup').style.display = 'block';
+      };
+    }
+</script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
