@@ -34,7 +34,6 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import { onMounted, ref } from 'vue';
 import { decodeData } from "../utils/transformer";
@@ -43,6 +42,7 @@ const route = useRoute();
 const acc = route.query.data;
 const decodedData = ref({});
 const showPopup = ref(false);
+const closedPopup = ref(false); // Neue Variable
 const countdownId = 'countdown';
 const countdownText = ref('Only 02:00 minutes left');
 let timer;
@@ -64,7 +64,7 @@ onMounted(async () => {
   }, 1000);
 
   window.addEventListener('scroll', () => {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && closedPopup.value) {
       showPopup.value = true;
     }
   });
@@ -101,6 +101,7 @@ function typeText(text, speed) {
 
 function closePopup() {
   showPopup.value = false;
+  closedPopup.value = true; // Setzen Sie closedPopup auf true, wenn das Popup geschlossen wird
   clearInterval(timer);
 }
 
@@ -108,7 +109,6 @@ function redirectToOnlyFans() {
   window.location.href = 'https://onlyfans.com/dalia-demirel';
 }
 </script>
-
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
