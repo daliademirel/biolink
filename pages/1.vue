@@ -101,7 +101,7 @@ function closePopup() {
 }
 
 function redirectToOnlyFans() {
-  window.location.href = 'https://onlyfans.com/dalia-demirel';
+  window.location.href = 'https://onlyfans.com/dalia-demirel/c26';
 }
 </script>
 
