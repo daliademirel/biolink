@@ -15,7 +15,7 @@
 import { onMounted, ref } from 'vue';
 import { decodeData } from "../utils/transformer";
 import axios from 'axios';
-import Popup from './Popup.vue'; // Importieren Sie die Popup-Komponente
+import Popup from './popup.vue'; // Importieren Sie die Popup-Komponente
 const route = useRoute();
 const acc = route.query.data;
 const decodedData = ref({});
