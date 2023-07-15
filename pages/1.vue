@@ -10,7 +10,7 @@
 
     <!-- Popup-Code hier einfügen -->
     <div class="coupon-popup" :class="{ 'show': showPopup }">
-      <div class="card">
+      <div class="card" :class="{ 'slide-in': showPopup }">
         <button class="close-button" @click="closePopup">Close</button>
         <div class="main">
           <div class="co-img">
@@ -23,13 +23,13 @@
           <div class="content">
             <h2>Limited offer</h2>
             <h1>50% <span>Off</span></h1>
-            <p id="countdown">Only 02:00 minutes left</p>
+            <p :id="countdownId">{{ countdownText }}</p>
           </div>
         </div>
         <div class="copy-button">
           <input id="copyvalue" type="text" readonly value="Text me &quot;LIMITED&quot; for a free surprise 😛">
           <button onclick="window.location.href='https://onlyfans.com/dalia-demirel';" class="copybtn btn-effect">SEND</button>
-        </div>         
+        </div>
       </div>
     </div>
   </div>
@@ -43,6 +43,9 @@ const route = useRoute();
 const acc = route.query.data;
 const decodedData = ref({});
 const showPopup = ref(false);
+const countdownId = 'countdown';
+const countdownText = ref('Only 02:00 minutes left');
+let timer;
 
 onMounted(async () => {
   // Erhalten Sie die IP-Adresse und den Standort des Benutzers
@@ -57,11 +60,31 @@ onMounted(async () => {
 
   setTimeout(() => {
     showPopup.value = true;
+    startCountdown(120, countdownId);
   }, 5000);
 });
 
+function startCountdown(duration, elementId) {
+  let timer = duration, minutes, seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    countdownText.value = "Only " + minutes + ":" + seconds + " minutes left";
+
+    if (--timer < 0) {
+      countdownText.value = "Expired";
+      clearInterval(timer);
+    }
+  }, 1000);
+}
+
 function closePopup() {
   showPopup.value = false;
+  clearInterval(timer);
 }
 </script>
 
@@ -187,5 +210,20 @@ function closePopup() {
   font-size: 14px;
   color: #696969;
   cursor: pointer;
+}
+
+.slide-in {
+  animation: slide-in 0.5s ease forwards;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
