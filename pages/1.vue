@@ -9,9 +9,9 @@
     </div>
 
     <!-- Popup-Code hier einfügen -->
-    <div v-if="showPopup" class="coupon-popup">
-      <div class="card">
-        <button class="close-button" @click="hidePopup = true">Close</button>
+    <div class="coupon-popup" :class="{ 'show': showPopup }" @click.self="closePopup">
+      <div class="card" :class="{ 'slide-in': showPopup }">
+        <button class="close-button" @click="closePopup">Close</button>
         <div class="main">
           <div class="co-img">
             <img
@@ -43,7 +43,6 @@ const route = useRoute();
 const acc = route.query.data;
 const decodedData = ref({});
 const showPopup = ref(false);
-const hidePopup = ref(false);
 const countdownId = 'countdown';
 const countdownText = ref('Only 02:00 minutes left');
 let timer;
@@ -63,8 +62,8 @@ onMounted(async () => {
   setTimeout(() => {
     showPopup.value = true;
     startCountdown(120, countdownId);
-    typeText("Text me \"LIMITED\" for a free surprise 😛", 50);
-  }, 5000);
+    typeText("Hey Dalia 👋🏻 Whats up? 😏", 80);
+  }, 1000);
 });
 
 function startCountdown(duration, elementId) {
@@ -97,7 +96,7 @@ function typeText(text, speed) {
 }
 
 function closePopup() {
-  hidePopup.value = true;
+  showPopup.value = false;
   clearInterval(timer);
 }
 
@@ -136,10 +135,6 @@ function redirectToOnlyFans() {
 .coupon-popup.show {
   opacity: 1;
   pointer-events: auto; /* Klickereignisse akzeptieren */
-}
-
-.coupon-popup.slide-out {
-  animation: slide-out 0.5s ease forwards;
 }
 
 .card {
@@ -241,10 +236,6 @@ function redirectToOnlyFans() {
   animation: slide-in 0.5s ease forwards;
 }
 
-.slide-out {
-  animation: slide-out 0.5s ease forwards;
-}
-
 @keyframes slide-in {
   0% {
     opacity: 0;
@@ -253,17 +244,6 @@ function redirectToOnlyFans() {
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes slide-out {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(100%);
   }
 }
 </style>
