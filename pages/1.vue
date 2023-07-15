@@ -9,9 +9,9 @@
     </div>
 
     <!-- Popup-Code hier einfügen -->
-    <div class="coupon-popup" :class="{ 'show': showPopup }" @click.self="closePopup">
-      <div class="card" :class="{ 'slide-in': showPopup }">
-        <button class="close-button" @click="closePopup">Close</button>
+    <div class="coupon-popup" :class="{ 'show': showPopup, 'slide-out': hidePopup }" @click.self="closePopup">
+      <div class="card" :class="{ 'slide-in': showPopup, 'slide-out': hidePopup }">
+        <button class="close-button" @click="hidePopup = true">Close</button>
         <div class="main">
           <div class="co-img">
             <img
@@ -43,6 +43,7 @@ const route = useRoute();
 const acc = route.query.data;
 const decodedData = ref({});
 const showPopup = ref(false);
+const hidePopup = ref(false);
 const countdownId = 'countdown';
 const countdownText = ref('Only 02:00 minutes left');
 let timer;
@@ -96,7 +97,11 @@ function typeText(text, speed) {
 }
 
 function closePopup() {
-  showPopup.value = false;
+  if (hidePopup.value) {
+    hidePopup.value = false;
+  } else {
+    hidePopup.value = true;
+  }
   clearInterval(timer);
 }
 
@@ -135,6 +140,10 @@ function redirectToOnlyFans() {
 .coupon-popup.show {
   opacity: 1;
   pointer-events: auto; /* Klickereignisse akzeptieren */
+}
+
+.coupon-popup.slide-out {
+  animation: slide-out 0.5s ease forwards;
 }
 
 .card {
@@ -236,6 +245,10 @@ function redirectToOnlyFans() {
   animation: slide-in 0.5s ease forwards;
 }
 
+.slide-out {
+  animation: slide-out 0.5s ease forwards;
+}
+
 @keyframes slide-in {
   0% {
     opacity: 0;
@@ -244,6 +257,17 @@ function redirectToOnlyFans() {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }
 </style>
