@@ -161,4 +161,3 @@
   transform: scale(0.95);
   background-color: #0088cc;
 }
-</style>
