@@ -11,6 +11,7 @@
     <!-- Popup-Code hier einfügen -->
     <div class="coupon-popup" style="display: none;">
       <div class="card">
+        <button class="close-button" @click="closePopup">Close</button>
         <div class="main">
           <div class="co-img">
             <img
@@ -41,6 +42,7 @@ import axios from 'axios';
 const route = useRoute();
 const acc = route.query.data;
 const decodedData = ref({});
+const showPopup = ref(false);
 
 onMounted(async () => {
   // Erhalten Sie die IP-Adresse und den Standort des Benutzers
@@ -54,10 +56,13 @@ onMounted(async () => {
   }
 
   setTimeout(() => {
-    document.querySelector('.coupon-popup').style.display = 'flex';
-    document.querySelector('.card').classList.add('slide-in');
+    showPopup.value = true;
   }, 5000);
 });
+
+function closePopup() {
+  showPopup.value = false;
+}
 </script>
 
 <style scoped>
@@ -167,16 +172,14 @@ onMounted(async () => {
   background-color: #0088cc;
 }
 
-.card.slide-in {
-  animation: slide-in 0.5s ease;
-}
-
-@keyframes slide-in {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: #696969;
+  cursor: pointer;
 }
 </style>
