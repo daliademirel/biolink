@@ -9,8 +9,8 @@
     </div>
 
     <!-- Popup-Code hier einfügen -->
-    <div v-if="showPopup" class="coupon-popup" @click.self="closePopup">
-      <div class="card" :class="{ 'slide-in': showPopup, 'slide-out': hidePopup }">
+    <div v-if="showPopup" class="coupon-popup">
+      <div class="card">
         <button class="close-button" @click="hidePopup = true">Close</button>
         <div class="main">
           <div class="co-img">
@@ -97,15 +97,8 @@ function typeText(text, speed) {
 }
 
 function closePopup() {
-  if (hidePopup.value) {
-    hidePopup.value = false;
-  } else {
-    hidePopup.value = true;
-  }
+  hidePopup.value = true;
   clearInterval(timer);
-  setTimeout(() => {
-    showPopup.value = false;
-  }, 500);
 }
 
 function redirectToOnlyFans() {
