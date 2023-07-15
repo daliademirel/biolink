@@ -14,9 +14,6 @@
           <p class="font-medium text-xl leading-6 text-gray-900">
             {{ label }}
           </p>
-          <div v-if="videoUrl" class="mt-2">
-            <a :href="videoUrl" target="_blank">Watch Video</a>
-          </div>
         </div>
       </dt>
     </nuxt-link>
