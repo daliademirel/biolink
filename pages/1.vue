@@ -53,30 +53,10 @@ onMounted(async () => {
     decodedData.value.d = decodedData.value.d.replace('*CITY*', `${location} ${flagEmoji}`);
   }
 
-  // Popup-Code hier einfügen
-  function startCountdown(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
-
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-
-      display.textContent = "Only " + minutes + ":" + seconds + " minutes left";
-
-      if (--timer < 0) {
-        // Countdown abgelaufen
-        display.textContent = "Expired";
-        // Weitere Aktionen hier ausführen
-      }
-    }, 1000);
-  }
-
-  var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
-      display = document.querySelector('#countdown');
-  startCountdown(twoMinutes, display);
-  document.querySelector('.coupon-popup').style.display = 'block';
+  setTimeout(() => {
+    document.querySelector('.coupon-popup').style.display = 'flex';
+    document.querySelector('.card').classList.add('slide-in');
+  }, 5000);
 });
 </script>
 
@@ -185,5 +165,18 @@ onMounted(async () => {
 .copy-button button:active {
   transform: scale(0.95);
   background-color: #0088cc;
+}
+
+.card.slide-in {
+  animation: slide-in 0.5s ease;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 </style>
