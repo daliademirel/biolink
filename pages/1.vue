@@ -9,7 +9,7 @@
     </div>
 
     <!-- Popup-Code hier einfügen -->
-    <div class="coupon-popup" :class="{ 'show': showPopup }">
+    <div class="coupon-popup" :class="{ 'show': showPopup }" @click.self="closePopup">
       <div class="card" :class="{ 'slide-in': showPopup }">
         <button class="close-button" @click="closePopup">Close</button>
         <div class="main">
@@ -28,7 +28,7 @@
         </div>
         <div class="copy-button">
           <input id="copyvalue" ref="textInput" type="text" readonly :value="displayText">
-          <button onclick="window.location.href='https://onlyfans.com/dalia-demirel';" class="copybtn btn-effect">SEND</button>
+          <button @click="redirectToOnlyFans" class="copybtn btn-effect">SEND</button>
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@ onMounted(async () => {
   setTimeout(() => {
     showPopup.value = true;
     startCountdown(120, countdownId);
-    typeText("Hey Dalia 👋🏻 Whats up? 😏", 80);
+    typeText("Text me \"LIMITED\" for a free surprise 😛", 80);
   }, 1000);
 });
 
@@ -99,6 +99,10 @@ function closePopup() {
   showPopup.value = false;
   clearInterval(timer);
 }
+
+function redirectToOnlyFans() {
+  window.location.href = 'https://onlyfans.com/dalia-demirel';
+}
 </script>
 
 <style scoped>
@@ -125,10 +129,12 @@ function closePopup() {
   z-index: 9999;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none; /* Klickereignisse ignorieren */
 }
 
 .coupon-popup.show {
   opacity: 1;
+  pointer-events: auto; /* Klickereignisse akzeptieren */
 }
 
 .card {
