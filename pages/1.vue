@@ -7,8 +7,33 @@
     >
       <base-loading class="h-5 w-5" />
     </div>
+
+    <!-- Popup-Code hier einfügen -->
+    <div class="coupon-popup" style="display: none;">
+      <div class="card">
+        <div class="main">
+          <div class="co-img">
+            <img
+              src="https://i.ibb.co/0yY1zxt/Only-Fans-Social-Icon-Rounded-Blue.png"
+              alt=""
+            />
+          </div>
+          <div class="vertical"></div>
+          <div class="content">
+            <h2>Limited offer</h2>
+            <h1>50% <span>Off</span></h1>
+            <p id="countdown">Only 02:00 minutes left</p>
+          </div>
+        </div>
+        <div class="copy-button">
+          <input id="copyvalue" type="text" readonly value="Text me &quot;LIMITED&quot; for a free surprise 😛">
+          <button onclick="window.location.href='https://onlyfans.com/dalia-demirel';" class="copybtn btn-effect">SEND</button>
+        </div>         
+      </div>
+    </div>
   </div>
 </template>
+
 <script setup>
 import { onMounted, ref } from 'vue';
 import { decodeData } from "../utils/transformer";
@@ -27,5 +52,138 @@ onMounted(async () => {
   if (decodedData.value.d.includes('*CITY*')) {
     decodedData.value.d = decodedData.value.d.replace('*CITY*', `${location} ${flagEmoji}`);
   }
+
+  // Popup-Code hier einfügen
+  function startCountdown(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = "Only " + minutes + ":" + seconds + " minutes left";
+
+      if (--timer < 0) {
+        // Countdown abgelaufen
+        display.textContent = "Expired";
+        // Weitere Aktionen hier ausführen
+      }
+    }, 1000);
+  }
+
+  var twoMinutes = 2 * 60, // 2 Minuten in Sekunden
+      display = document.querySelector('#countdown');
+  startCountdown(twoMinutes, display);
+  document.querySelector('.coupon-popup').style.display = 'block';
 });
 </script>
+
+<style scoped>
+/* Ihr CSS-Code hier */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.coupon-popup {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 180px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  padding: 10px 10px;
+}
+
+.main,
+.copy-button {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
+}
+
+.co-img img {
+  width: 70px;
+  height: 70px;
+  margin-left: 35px;
+}
+
+.vertical {
+  border-left: 5px dotted black;
+  height: 100px;
+  position: absolute;
+  left: 40%;
+}
+
+.content h1 {
+  font-size: 35px;
+  margin-left: -20px;
+  color: #565656;
+}
+
+.content h1 span {
+  font-size: 18px;
+}
+
+.content h2 {
+  font-size: 18px;
+  margin-left: -20px;
+  color: #565656;
+  text-transform: uppercase;
+}
+
+.content p {
+  font-size: 16px;
+  color: #696969;
+  margin-left: -20px;
+}
+
+.copy-button {
+  margin: 12px 0 -5px 0;
+  height: 45px;
+  border-radius: 4px;
+  padding: 0 5px;
+  border: 1px solid #e1e1e1;
+}
+
+.copy-button input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+.copy-button button {
+  padding: 5px 20px;
+  background-color: #00aeef;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 50px;
+}
+
+.copy-button button:active {
+  transform: scale(0.95);
+  background-color: #0088cc;
+}
+</style>
