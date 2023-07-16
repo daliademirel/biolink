@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex justify-center items-center">
     <templates-simple v-if="decodedData" :acc="decodedData" />
     <div
       v-else
@@ -7,7 +7,7 @@
     >
       <base-loading class="h-5 w-5" />
     </div>
-
+  </div>
     <!-- Popup-Code hier einfügen -->
     <div class="coupon-popup" :class="{ 'show': showPopup }" @click.self="closePopup">
       <div class="card" :class="{ 'slide-in': showPopup }">
